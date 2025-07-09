@@ -55,7 +55,7 @@ export default function About() {
           </Typography>
           
           <Stepper orientation="vertical">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <Step key={step.label} active={true}>
                 <StepLabel>
                   <Typography variant="h6">{step.label}</Typography>
@@ -75,7 +75,7 @@ export default function About() {
             Blockchain Technology
           </Typography>
           <Typography variant="body1" paragraph>
-            WeFundWe leverages blockchain smart contracts to ensure complete transparency and automatic fund distribution. Here's how it works:
+                         WeFundWe leverages blockchain smart contracts to ensure complete transparency and automatic fund distribution. Here&apos;s how it works:
           </Typography>
           <Box component="ul" sx={{ pl: 2 }}>
             <Typography component="li" variant="body1" paragraph>
@@ -194,7 +194,7 @@ export default function About() {
             Join the Future of Crowdfunding
           </Typography>
           <Typography variant="body1" paragraph>
-            Whether you're looking to create a campaign for a worthy cause or want to support others through secure, transparent donations, WeFundWe provides the platform you need. Our blockchain-powered system ensures that your contributions make a real difference while maintaining complete transparency and security.
+                         Whether you&apos;re looking to create a campaign for a worthy cause or want to support others through secure, transparent donations, WeFundWe provides the platform you need. Our blockchain-powered system ensures that your contributions make a real difference while maintaining complete transparency and security.
           </Typography>
           <Typography variant="body1" paragraph>
             Join thousands of users who are already leveraging the power of blockchain technology to create positive change in the world. Start your journey with WeFundWe today.

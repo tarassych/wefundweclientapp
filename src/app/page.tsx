@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Button, Card, CardContent, Grid } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent } from "@mui/material";
 import Navigation from "@/components/Navigation";
 import Link from "next/link";
 
