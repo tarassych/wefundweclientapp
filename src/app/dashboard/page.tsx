@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
+import Link from "next/link";
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -44,6 +45,21 @@ export default function Dashboard() {
           <Typography variant="h6" color="text.secondary">
             Manage your campaigns and track your donations.
           </Typography>
+          {(session.user as { isVerified?: boolean })?.isVerified ? (
+            <Chip 
+              label="Verified User" 
+              color="success" 
+              size="small" 
+              sx={{ mt: 1 }}
+            />
+          ) : (
+            <Chip 
+              label="Unverified User" 
+              color="warning" 
+              size="small" 
+              sx={{ mt: 1 }}
+            />
+          )}
         </Box>
 
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(4, 1fr)" }, gap: 4, mb: 6 }}>
@@ -156,9 +172,11 @@ export default function Dashboard() {
                 Quick Actions
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <Button variant="contained" fullWidth>
-                  Create New Campaign
-                </Button>
+                <Link href="/campaigns/create" style={{ textDecoration: "none" }}>
+                  <Button variant="contained" fullWidth>
+                    Create New Campaign
+                  </Button>
+                </Link>
                 <Button variant="outlined" fullWidth>
                   Browse All Campaigns
                 </Button>

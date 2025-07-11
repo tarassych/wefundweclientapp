@@ -11,49 +11,61 @@ export default function Campaigns() {
       id: 1,
       title: "Medical Fund for Sarah Johnson (Demo Campaign)",
       description: "Help Sarah cover her medical expenses for cancer treatment. Sarah is a single mother of two who was recently diagnosed with breast cancer. [This is a demo campaign for demonstration purposes only]",
-      goal: 15000,
-      raised: 8750,
+      goalAmountUsd: 15000,
+      totalDonated: 8750,
+      totalDonations: 234,
       donors: 234,
       daysLeft: 12,
       category: "Medical",
       image: "M",
-      status: "active"
+      status: "active",
+      isVerified: true,
+      goalReached: false
     },
     {
       id: 2,
       title: "Education Fund for Local School (Demo Campaign)",
       description: "Support our local elementary school's technology upgrade. We need new computers and educational software for our students. [This is a demo campaign for demonstration purposes only]",
-      goal: 25000,
-      raised: 18750,
+      goalAmountUsd: 25000,
+      totalDonated: 18750,
+      totalDonations: 156,
       donors: 156,
       daysLeft: 8,
       category: "Education",
       image: "E",
-      status: "active"
+      status: "active",
+      isVerified: true,
+      goalReached: false
     },
     {
       id: 3,
       title: "Community Garden Project (Demo Campaign)",
       description: "Create a community garden in our neighborhood to provide fresh produce and bring people together. [This is a demo campaign for demonstration purposes only]",
-      goal: 8000,
-      raised: 8000,
+      goalAmountUsd: 8000,
+      totalDonated: 8000,
+      totalDonations: 89,
       donors: 89,
       daysLeft: 0,
       category: "Community",
       image: "C",
-      status: "completed"
+      status: "completed",
+      isVerified: true,
+      goalReached: true
     },
     {
       id: 4,
       title: "Animal Shelter Renovation (Demo Campaign)",
       description: "Help us renovate our local animal shelter to provide better care for abandoned pets and increase adoption rates. [This is a demo campaign for demonstration purposes only]",
-      goal: 12000,
-      raised: 3200,
+      goalAmountUsd: 12000,
+      totalDonated: 3200,
+      totalDonations: 67,
       donors: 67,
       daysLeft: 25,
       category: "Animals",
       image: "A",
-      status: "active"
+      status: "active",
+      isVerified: true,
+      goalReached: false
     }
   ];
 
@@ -91,12 +103,21 @@ export default function Campaigns() {
               <strong>Demo Notice:</strong> The campaigns shown below are demonstration campaigns for testing purposes only. These are not real fundraising campaigns.
             </Typography>
           </Box>
+
+          {/* Create New Campaign Button */}
+          <Box sx={{ mb: 4, display: 'flex', justifyContent: 'flex-end' }}>
+            <Link href="/campaigns/create" passHref legacyBehavior>
+              <Button variant="contained" color="primary" size="large">
+                Create New Campaign
+              </Button>
+            </Link>
+          </Box>
         </Box>
 
         {campaigns.length > 0 ? (
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" }, gap: 4 }}>
             {campaigns.map((campaign) => {
-              const progressPercentage = Math.min((campaign.raised / campaign.goal) * 100, 100);
+              const progressPercentage = Math.min((campaign.totalDonated / campaign.goalAmountUsd) * 100, 100);
               
               return (
                 <Card key={campaign.id} sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
@@ -129,7 +150,7 @@ export default function Campaigns() {
                     <Box sx={{ mb: 2 }}>
                       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
                         <Typography variant="body2" color="text.secondary">
-                          ${campaign.raised.toLocaleString()} raised of ${campaign.goal.toLocaleString()}
+                          ${campaign.totalDonated.toLocaleString()} raised of ${campaign.goalAmountUsd.toLocaleString()}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                           {progressPercentage.toFixed(0)}%

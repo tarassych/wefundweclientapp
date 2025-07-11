@@ -66,6 +66,33 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret_here
 # NextAuth Configuration
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret_here
+
+# MongoDB Configuration
+MONGODB_URI=your_mongodb_atlas_connection_string_here
+
+# Alchemy Configuration
+ALCHEMY_API_KEY=your_alchemy_api_key
+ALCHEMY_NETWORK=eth-mainnet
+ALCHEMY_APP_ID=your_alchemy_app_id
+
+# Smart Contract Configuration
+CAMPAIGN_CONTRACT_ADDRESS=your_multi_campaign_contract_address
+CAMPAIGN_CONTRACT_ABI_PATH=./contracts/CampaignContract.json
+
+# Wallet Configuration
+DEPLOYER_PRIVATE_KEY=your_deployer_wallet_private_key
+DEPLOYER_ADDRESS=your_deployer_wallet_address
+
+# Gas Configuration
+GAS_LIMIT=3000000
+GAS_PRICE=20000000000
+
+# Campaign Configuration
+CAMPAIGN_CREATION_FEE=0.01
+PLATFORM_FEE_PERCENTAGE=2.5
+
+# Environment
+NODE_ENV=development
 ```
 
 ### Setting up Google OAuth
@@ -76,6 +103,37 @@ NEXTAUTH_SECRET=your_nextauth_secret_here
 4. Go to "Credentials" and create an OAuth 2.0 Client ID
 5. Add `http://localhost:3000/api/auth/callback/google` to the authorized redirect URIs
 6. Copy the Client ID and Client Secret to your `.env.local` file
+
+### Setting up MongoDB Atlas
+
+1. Create a MongoDB Atlas account at [https://www.mongodb.com/atlas](https://www.mongodb.com/atlas)
+2. Create a new cluster (free tier is sufficient for development)
+3. Set up database access with a username and password
+4. Set up network access (allow access from anywhere for development: 0.0.0.0/0)
+5. Get your connection string from the "Connect" button
+6. Replace `<password>` with your actual password in the connection string
+7. Add the connection string to your `.env.local` file as `MONGODB_URI`
+
+### Setting up Alchemy Blockchain Integration
+
+1. Create an Alchemy account at [https://www.alchemy.com/](https://www.alchemy.com/)
+2. Create a new app in the Alchemy dashboard
+3. Select Ethereum as the blockchain and Mainnet as the network
+4. Copy your API key from the app dashboard
+5. Add the API key to your `.env.local` file as `ALCHEMY_API_KEY`
+
+### Setting up Smart Contract
+
+1. Deploy your multi-campaign smart contract to Ethereum mainnet
+2. Copy the contract address and add it to your `.env.local` file as `CAMPAIGN_CONTRACT_ADDRESS`
+3. Create a deployer wallet or use an existing one
+4. Add the wallet's private key to your `.env.local` file as `DEPLOYER_PRIVATE_KEY`
+5. Add the wallet's address to your `.env.local` file as `DEPLOYER_ADDRESS`
+
+**Important Security Notes:**
+- Never commit your `.env.local` file to version control
+- Use a dedicated wallet for deployment with limited funds
+- Consider using environment-specific keys for development vs production
 
 ### Running the Application
 
@@ -194,6 +252,16 @@ The application can be deployed to any platform that supports Next.js:
 | `GOOGLE_CLIENT_SECRET` | Google OAuth Client Secret | Yes |
 | `NEXTAUTH_URL` | Your application URL | Yes |
 | `NEXTAUTH_SECRET` | Secret for NextAuth.js | Yes |
+| `MONGODB_URI` | MongoDB Atlas connection string | Yes |
+| `ALCHEMY_API_KEY` | Alchemy API key for blockchain integration | Yes |
+| `ALCHEMY_NETWORK` | Ethereum network (eth-mainnet, eth-goerli, etc.) | Yes |
+| `CAMPAIGN_CONTRACT_ADDRESS` | Deployed smart contract address | Yes |
+| `DEPLOYER_PRIVATE_KEY` | Private key of deployer wallet | Yes |
+| `DEPLOYER_ADDRESS` | Address of deployer wallet | Yes |
+| `GAS_LIMIT` | Gas limit for transactions | No |
+| `GAS_PRICE` | Gas price in wei | No |
+| `CAMPAIGN_CREATION_FEE` | Fee for creating campaigns in ETH | No |
+| `PLATFORM_FEE_PERCENTAGE` | Platform fee percentage | No |
 
 ## Contributing
 
